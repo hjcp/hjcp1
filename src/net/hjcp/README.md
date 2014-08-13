@@ -27,7 +27,8 @@
   
 ## Задача
 Задача прочитать данный массив и вывести его на экран в виде:
-`      Hexlet Java Community Problems (HJCP)
+~~~~
+       Hexlet Java Community Problems (HJCP)
        Problem: #1 (https://github.com/hjcp/hjcp1.git)
        Create by: <Author>
        URL: <URL Github>
@@ -40,5 +41,6 @@
  * Administrator * adminname     * adminpass      * OK     * 2001/01/01 * NoteAdm *
  * User          * username      * userpass       * Block  * 2014/08/10 * NoteUsr *
  * Operator      * opername      * operpass       * OK     * 2014/08/10 * NoteOpr *
- **********************************************************************************`
+ **********************************************************************************
+~~~~
  
