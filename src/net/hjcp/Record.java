@@ -6,9 +6,9 @@ public class Record {
     private String username;
     private String password;
     private String status;
-    private int year;
-    private int month;
-    private int day;
+    private String year;
+    private String month;
+    private String day;
     private String note;
 
     public Record() {
@@ -33,7 +33,7 @@ public class Record {
                 break;
 
             case Constants.PRIVILEGE_SUPERVISOR:
-                this.privilege = Constants.SVISOR;
+                this.privilege = Constants.SUPERVISOR;
                 break;
 
             default:
@@ -82,27 +82,27 @@ public class Record {
         }
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public int getMonth() {
+    public String getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(String month) {
         this.month = month;
     }
 
-    public int getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(String day) {
         this.day = day;
     }
 

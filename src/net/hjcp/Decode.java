@@ -18,11 +18,5 @@ public class Decode {
         }
 
         reader.PrintRecords();
-
-        /*for (int i = 0; i < myData.length; i++) {
-            System.out.printf("0x%X ", myData[i]);
-        }*/
-
-
     }
 }

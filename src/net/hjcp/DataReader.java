@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class DataReader {
 
     private final int RECORD_LENGTH = 48;    //One line is 48 bytes
+    private final int DECODE_OFFSET = 12;
 
     private int[] data;
     private ArrayList<Record> decodedData;
@@ -29,14 +30,6 @@ public class DataReader {
         catch (Exception e) {
             throw new ReadDataException(e);
         }
-    }
-
-    public int getNumberOfRecords() {
-        return decodedData.size();
-    }
-
-    public Record getRecord(int recordNumber) {
-        return recordNumber < decodedData.size() ? decodedData.get(recordNumber) : null;
     }
 
     public void PrintRecords() {
@@ -64,7 +57,7 @@ public class DataReader {
         try {
             for (int i = 0; i < Constants.USERNAME_LENGTH; i++) {
                 if (data[currentOffset + i] != 0x0C)
-                    buf[i] = (char)data[currentOffset + i];
+                    buf[i] = (char)(data[currentOffset + i] - DECODE_OFFSET);
                 else
                     buf[i] = ' ';
             }
@@ -81,7 +74,7 @@ public class DataReader {
         try {
             for (int i = 0; i < Constants.PASSWORD_LENGTH; i++) {
                 if (data[currentOffset + i] != 0x0C)
-                    buf[i] = (char)data[currentOffset + i];
+                    buf[i] = (char)(data[currentOffset + i] - DECODE_OFFSET);
                 else
                     buf[i] = ' ';
             }
@@ -101,42 +94,41 @@ public class DataReader {
 
         //Read Date - Day
         currentOffset += Constants.STATUS_LENGTH;
-        int day;
+        buf = new char[2];
         try {
-            day = data[currentOffset] * 10;
-            day += data[currentOffset + 1]; //Day has 2 bytes
+            buf[0] = (char)(data[currentOffset] - DECODE_OFFSET);
+            buf[1] = (char)(data[currentOffset + 1] - DECODE_OFFSET);
         }
         catch (Exception e) {
             throw new ReadLineException(Constants.DATA_CONVERT_EXCEPTION);
         }
 
-        rec.setDay(day);
+        rec.setDay(String.copyValueOf(buf));
 
         //Read Date - Month
-        int month;
         try {
-            month = data[currentOffset + 2] * 10;
-            month += data[currentOffset + 3]; //Month has 2 bytes
+            buf[0] = (char)(data[currentOffset + 2] - DECODE_OFFSET);
+            buf[1] = (char)(data[currentOffset + 3] - DECODE_OFFSET);
         }
         catch (Exception e) {
             throw new ReadLineException(Constants.DATA_CONVERT_EXCEPTION);
         }
 
-        rec.setMonth(month);
+        rec.setMonth(String.copyValueOf(buf));
 
         //Read Date - Year
-        int year;
+        buf = new char[4];
         try {
-            year = data[currentOffset + 4] * 1000;
-            year += data[currentOffset + 5] * 100;
-            year += data[currentOffset + 5] * 10;
-            year += data[currentOffset + 5];
+            buf[0] = (char)(data[currentOffset + 4]  - DECODE_OFFSET);
+            buf[1] = (char)(data[currentOffset + 5] - DECODE_OFFSET);
+            buf[2] = (char)(data[currentOffset + 5] - DECODE_OFFSET);
+            buf[3] = (char)(data[currentOffset + 5] - DECODE_OFFSET);
         }
         catch (Exception e) {
             throw new ReadLineException(Constants.DATA_CONVERT_EXCEPTION);
         }
 
-        rec.setYear(year);
+        rec.setYear(String.copyValueOf(buf));
 
         //Read Note
         //Read Password
@@ -144,7 +136,7 @@ public class DataReader {
         try {
             buf = new char[Constants.NOTE_LENGTH];
             for (int i = 0; i < Constants.NOTE_LENGTH; i++)
-                buf[i] = (char)data[currentOffset + i];
+                buf[i] = (char)(data[currentOffset + i] - DECODE_OFFSET);
         }
         catch (Exception e) {
             throw new ReadLineException(e);

@@ -18,7 +18,7 @@ public class Constants {
     public final static String OPERATOR = "Operator";
     public final static String USER = "User";
     public final static String ADMIN = "Administrator";
-    public final static String SVISOR = "Supervisor";
+    public final static String SUPERVISOR = "Supervisor";
     public final static String OK = "OK";
     public final static String BLOCK = "Block";
     public final static String UNKNOWN = "Unknown";
@@ -33,7 +33,7 @@ public class Constants {
     public final static String PROBLEM_URL = "Problem: #1 (https://github.com/hjcp/hjcp1.git)";
     public final static String AUTHOR = "Create by: Sergey Gaberer";
     public final static String SOLVE_URL = "URL: https://github.com/domiso/hjcp1.git";
-    public final static String SOLVE_VERSION = "Version: 0.1";
+    public final static String SOLVE_VERSION = "Version: 1.0";
 
     //Table header
     public final static String HEADER_PRIVILEGY = "Privilegy";
