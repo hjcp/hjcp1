@@ -121,8 +121,8 @@ public class DataReader {
         try {
             buf[0] = (char)(data[currentOffset + 4]  - DECODE_OFFSET);
             buf[1] = (char)(data[currentOffset + 5] - DECODE_OFFSET);
-            buf[2] = (char)(data[currentOffset + 5] - DECODE_OFFSET);
-            buf[3] = (char)(data[currentOffset + 5] - DECODE_OFFSET);
+            buf[2] = (char)(data[currentOffset + 6] - DECODE_OFFSET);
+            buf[3] = (char)(data[currentOffset + 7] - DECODE_OFFSET);
         }
         catch (Exception e) {
             throw new ReadLineException(Constants.DATA_CONVERT_EXCEPTION);
