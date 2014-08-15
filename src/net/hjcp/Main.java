@@ -12,7 +12,11 @@ public class Main {
         int[] codes = myData.getData();
         String seq = new String();
         for (int i = 0; i < codes.length; i++) {
-            seq += (char)(codes[i] + displacement);
+        	if(codes[i] + displacement < 0)
+        		//Number
+        		seq += codes[i];
+        	else
+        		seq += (char)(codes[i] + displacement);
         }
         return seq;
 	}

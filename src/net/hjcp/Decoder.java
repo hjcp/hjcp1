@@ -27,12 +27,41 @@ public class Decoder {
 		for(String line : lines) {
 			temp = new LinkedHashMap<String, String>();
 			
-			priv = removeWhitespaces(line.substring(0, 1));
+			
+			priv = line.substring(0, 1);
 			user = removeWhitespaces(line.substring(1, 16));
 			pass = removeWhitespaces(line.substring(16, 32));
-			status = removeWhitespaces(line.substring(32, 33));
+			status = line.substring(32, 33);
 			date = line.substring(33, 35) + "/" + line.substring(35, 37) + "/" + line.substring(37, 41);
 			note = removeWhitespaces(line.substring(41, line.length()));
+			
+			switch(priv) {
+				case "1":
+					priv = "Operator     ";
+					break;
+				case "2":
+					priv = "User         ";
+					break;
+				case "3":
+					priv = "Administrator";
+					break;
+				case "4":
+					priv = "Supervisor   ";
+					break;
+				default:
+					priv = "Error        ";
+			}
+			
+			switch(status) {
+				case "1":
+					status = "Ok   ";
+					break;
+				case "2":
+					status = "Block";
+					break;
+				default:
+					status = "Error";
+			}
 			
 			//dev
 			//System.out.println("Priv: " + priv + ", user: " + user + ", pass: " + pass + ", status: " + status + ", date: " + date + ", note: " + note);
