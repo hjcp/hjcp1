@@ -1,6 +1,10 @@
 package net.hjcp;
 
+import java.security.InvalidParameterException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class Record {
@@ -15,8 +19,20 @@ public class Record {
         return priv;
     }
 
-    public void setPriv(String priv) {
-        this.priv = priv;
+    public void setPriv(int priv) {
+        switch (priv){
+            case 01: this.priv = "Operator";
+                break;
+            case 02: this.priv = "User";
+                break;
+            case 03: this.priv = "Administrator";
+                break;
+            case 04: this.priv = "Supervisor";
+                break;
+            default: throw new InvalidParameterException();
+
+        }
+
     }
 
     public String getUserName() {
@@ -39,16 +55,29 @@ public class Record {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(int status) {
+        switch (status){
+            case 1: this.status = "OK";
+                break;
+            case 2: this.status = "Block";
+                break;
+            default: throw new InvalidParameterException();
+        }
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(String date) {
+        try
+        {
+            this.date = new SimpleDateFormat("ddMMyyyy", Locale.ENGLISH).parse(date);
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+
     }
 
     public String getNote() {

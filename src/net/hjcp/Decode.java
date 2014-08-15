@@ -10,20 +10,11 @@ public class Decode {
         Data myDate = new Data();
         int[] myData = myDate.getData();
 
+        ArrayList<Record> decryptedData = Decoder.decryptData(myData, -12);
 
-        for (int i = 0; i < myData.length; i++) {
-            System.out.printf("0x%X ", myData[i]);
-        }
-        System.out.println();
 
-        int[] sw = Decoder.decryptData(myData, 12);
-        for (int i = 0; i < sw.length; i++) {
-            System.out.print((char) sw[i]);
-        }
+        Printer.print(decryptedData);
 
-        System.out.println();
-
-        Printer.print(sw);
 
     }
 
