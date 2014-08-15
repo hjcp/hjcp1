@@ -1,4 +1,4 @@
-package net.hjcp;
+package com.bg.task0;
 
 public class Data {
 
